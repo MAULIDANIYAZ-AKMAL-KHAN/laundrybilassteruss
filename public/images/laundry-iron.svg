@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img" aria-labelledby="title">
+  <title id="title">Ilustrasi layanan setrika pakaian</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#fce7d7"/>
+      <stop offset="1" stop-color="#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h640v320H0z"/>
+  <circle cx="536" cy="69" r="45" fill="#fff" opacity=".45"/>
+  <circle cx="104" cy="245" r="27" fill="#fff" opacity=".42"/>
+  <path d="M0 257c114-21 224 18 336 1s198-20 304 2v60H0z" fill="#fdba74" opacity=".55"/>
+  <path d="M155 243h314l-18 28H172z" fill="#9a6748"/>
+  <path d="M176 231h272l16 16H160z" fill="#c08457"/>
+  <path d="M260 230v-97l-35-20 30-45h127l36 44-32 21v97z" fill="#60a5fa"/>
+  <path d="m256 68 63 42 63-42-30-14h-66z" fill="#3b82f6"/>
+  <path d="m291 112 28 24 28-24-11-8h-34z" fill="#fff"/>
+  <path d="m307 137 12 13 12-13-6-10h-12z" fill="#2563eb"/>
+  <path d="M113 211c14-38 44-61 87-70l46-4c12 0 20 9 18 20l-5 25-35 22-73 26z" fill="#f8fafc" stroke="#64748b" stroke-width="5"/>
+  <path d="m140 206 13 16 73-16 30-24" fill="none" stroke="#cbd5e1" stroke-width="5"/>
+  <circle cx="184" cy="218" r="5" fill="#64748b"/>
+  <path d="M480 204c-6-16 5-28 18-25 7-20 34-18 37 2 17 2 21 26 3 33h-42c-8 0-13-4-16-10Z" fill="#fff" opacity=".8"/>
+</svg>

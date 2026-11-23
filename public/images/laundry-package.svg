@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img" aria-labelledby="title">
+  <title id="title">Ilustrasi paket cuci dan setrika</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#dcfce7"/>
+      <stop offset="1" stop-color="#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h640v320H0z"/>
+  <circle cx="90" cy="84" r="32" fill="#fff" opacity=".48"/>
+  <circle cx="553" cy="221" r="43" fill="#fff" opacity=".38"/>
+  <path d="M0 267c124-30 220 9 333-3s204-18 307 2v54H0z" fill="#86efac" opacity=".55"/>
+  <path d="M167 231h292v42H167z" rx="8" fill="#fbbf24"/>
+  <path d="M167 231h292v12H167z" fill="#f59e0b"/>
+  <path d="M193 187h241v46H193z" rx="8" fill="#f8fafc"/>
+  <path d="M193 187h241v13H193z" fill="#e2e8f0"/>
+  <path d="M220 145h190v44H220z" rx="8" fill="#93c5fd"/>
+  <path d="M220 145h190v12H220z" fill="#60a5fa"/>
+  <path d="M252 140c12-37 34-56 67-56s56 19 68 56" fill="none" stroke="#475569" stroke-linecap="round" stroke-width="8"/>
+  <path d="M282 101h76l24 33H258z" fill="#fff"/>
+  <path d="m320 102 23 19-23 16-23-16z" fill="#34d399"/>
+  <path d="M286 118h68v20h-68z" fill="#60a5fa"/>
+  <circle cx="159" cy="155" r="14" fill="#fff" opacity=".8"/>
+  <circle cx="474" cy="106" r="11" fill="#fff" opacity=".8"/>
+  <path d="M499 251h44l-6 28h-32z" fill="#fff" opacity=".85"/>
+</svg>

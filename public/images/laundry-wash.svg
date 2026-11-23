@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img" aria-labelledby="title">
+  <title id="title">Ilustrasi layanan cuci pakaian</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="machine" x2="0" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h640v320H0z"/>
+  <circle cx="92" cy="72" r="25" fill="#fff" opacity=".55"/>
+  <circle cx="550" cy="94" r="38" fill="#fff" opacity=".42"/>
+  <circle cx="512" cy="258" r="20" fill="#fff" opacity=".55"/>
+  <path d="M0 265c125-24 202 18 326 1s203-27 314 0v54H0z" fill="#93c5fd" opacity=".55"/>
+  <rect x="223" y="34" width="194" height="250" rx="20" fill="url(#machine)" stroke="#94a3b8" stroke-width="5"/>
+  <path d="M228 53q0-14 15-14h154q15 0 15 14v43H228z" fill="#f8fafc"/>
+  <circle cx="258" cy="69" r="8" fill="#60a5fa"/>
+  <rect x="280" y="61" width="76" height="15" rx="7" fill="#dbeafe"/>
+  <circle cx="384" cy="69" r="8" fill="#34d399"/>
+  <circle cx="320" cy="187" r="71" fill="#cbd5e1" stroke="#64748b" stroke-width="6"/>
+  <circle cx="320" cy="187" r="57" fill="#bfdbfe"/>
+  <path d="M288 195c6-26 20-40 32-40s26 14 32 40c-10 15-21 22-32 22s-22-7-32-22Z" fill="#60a5fa"/>
+  <path d="M302 176c10-15 24-19 38-9" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="7"/>
+  <circle cx="193" cy="145" r="13" fill="#fff" opacity=".85"/>
+  <circle cx="445" cy="173" r="10" fill="#fff" opacity=".8"/>
+  <path d="M128 255h64l-7 32h-50z" fill="#fbbf24"/>
+  <path d="m137 248 14-21 16 21 15-14 10 21h-57z" fill="#f97316"/>
+</svg>
