@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->is_admin) {
+        if (Auth::user()->is_admin || Auth::user()->is_cashier) {
             return redirect()->intended(route('dashboard'));
         }
 

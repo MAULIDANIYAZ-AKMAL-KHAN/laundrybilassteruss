@@ -16,12 +16,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin Laundry',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password123'),
-            'is_admin' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'name' => 'Admin Laundry',
+                'password' => Hash::make('password123'),
+                'is_admin' => true,
+                'is_cashier' => false,
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'kasir@gmail.com'],
+            [
+                'name' => 'Kasir Laundry',
+                'password' => Hash::make('password123'),
+                'is_admin' => false,
+                'is_cashier' => true,
+            ]
+        );
 
         $this->call(LaundryItemSeeder::class);
     }

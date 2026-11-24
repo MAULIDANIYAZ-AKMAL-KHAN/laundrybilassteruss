@@ -11,15 +11,13 @@
     <header class="admin-topbar">
         <div class="admin-bar-inner">
             <a href="{{ route('dashboard') }}" class="admin-mark" aria-label="Bilassss Terussss">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                    <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                    <path d="m16 3 0 13m0 0 11-6.5M16 16 5 9.5m11 6.5v13" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
+                <img src="{{ asset('images/laundry-logo.svg') }}" alt="" class="admin-mark-image">
             </a>
             <a href="{{ route('dashboard') }}" class="admin-brand">Bilassss Terussss</a>
             <nav class="admin-nav">
                 <a href="{{ route('dashboard') }}" @class(['active' => request()->routeIs('dashboard', 'admin.dashboard')])>Dashboard</a>
-                <a href="{{ route('laundry_items.index') }}" @class(['active' => request()->routeIs('laundry_items.*')])>Kelola Layanan</a>
+                <a href="{{ route('laundry_items.index') }}" @class(['active' => request()->routeIs('laundry_items.*')])>Data Layanan</a>
+                <a href="{{ route('admin.reports') }}" @class(['active' => request()->routeIs('admin.reports')])>Rekap Transaksi</a>
             </nav>
             <span class="admin-customer-link" title="Akun yang sedang masuk">{{ auth()->user()->name }}</span>
             <form action="{{ route('logout') }}" method="POST" class="admin-logout">
@@ -57,8 +55,12 @@
         </select>
     </div>
     <div>
-        <label for="price">Harga (Rp)</label>
+        <label for="price">Harga per kg (Rp)</label>
         <input id="price" name="price" type="number" min="0" step="1" value="{{ old('price') }}" required>
+    </div>
+    <div>
+        <label for="estimated_duration">Estimasi selesai</label>
+        <input id="estimated_duration" name="estimated_duration" value="{{ old('estimated_duration') }}" required maxlength="100" placeholder="Contoh: 3-4 hari">
     </div>
     <div>
         <label for="description">Deskripsi</label>

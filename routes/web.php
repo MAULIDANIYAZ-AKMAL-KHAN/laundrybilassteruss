@@ -18,11 +18,16 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::middleware('can:access-admin')->group(function () {
+    Route::middleware('can:access-dashboard')->group(function () {
         Route::get('/dashboard', [OrderController::class, 'adminDashboard'])->name('dashboard');
         Route::get('/admin/dashboard', [OrderController::class, 'adminDashboard'])->name('admin.dashboard');
         Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus'])
             ->name('admin.orders.updateStatus');
+
+        Route::get('/admin/reports', [OrderController::class, 'report'])->name('admin.reports');
+    });
+
+    Route::middleware('can:access-admin')->group(function () {
         Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy'])
             ->name('admin.orders.destroy');
         Route::resource('/admin/laundry_items', LaundryItemController::class)

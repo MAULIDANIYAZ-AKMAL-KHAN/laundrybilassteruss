@@ -9,7 +9,10 @@
 </head>
 <body class="guest-site auth-site">
     <header class="guest-nav">
-        <a href="{{ route('customer.index') }}" class="guest-brand">Bilassss Terussss</a>
+        <a href="{{ route('customer.index') }}" class="guest-brand">
+            <img src="{{ asset('images/laundry-logo.svg') }}" alt="">
+            <span>Bilassss Terussss</span>
+        </a>
         <nav>
             <a href="{{ route('customer.index') }}">Layanan</a>
         </nav>

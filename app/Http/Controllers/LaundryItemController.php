@@ -61,6 +61,11 @@ class LaundryItemController extends Controller
 
     public function destroy(LaundryItem $laundryItem): RedirectResponse
     {
+        if ($laundryItem->orderDetails()->exists()) {
+            return redirect()->route('laundry_items.index')
+                ->with('error', 'Layanan yang sudah digunakan dalam transaksi tidak dapat dihapus.');
+        }
+
         $image = $laundryItem->image;
         $laundryItem->delete();
 
@@ -77,6 +82,7 @@ class LaundryItemController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required', 'in:Cuci,Setrika,Paket'],
             'price' => ['required', 'integer', 'min:0'],
+            'estimated_duration' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];

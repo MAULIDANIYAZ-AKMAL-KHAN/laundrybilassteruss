@@ -11,15 +11,13 @@
     <header class="admin-topbar">
         <div class="admin-bar-inner">
             <a href="{{ route('dashboard') }}" class="admin-mark" aria-label="Bilassss Terussss">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                    <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                    <path d="m16 3 0 13m0 0 11-6.5M16 16 5 9.5m11 6.5v13" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
+                <img src="{{ asset('images/laundry-logo.svg') }}" alt="" class="admin-mark-image">
             </a>
             <a href="{{ route('dashboard') }}" class="admin-brand">Bilassss Terussss</a>
             <nav class="admin-nav">
                 <a href="{{ route('dashboard') }}" @class(['active' => request()->routeIs('dashboard', 'admin.dashboard')])>Dashboard</a>
-                <a href="{{ route('laundry_items.index') }}" @class(['active' => request()->routeIs('laundry_items.*')])>Kelola Layanan</a>
+                <a href="{{ route('laundry_items.index') }}" @class(['active' => request()->routeIs('laundry_items.*')])>Data Layanan</a>
+                <a href="{{ route('admin.reports') }}" @class(['active' => request()->routeIs('admin.reports')])>Rekap Transaksi</a>
             </nav>
             <span class="admin-customer-link" title="Akun yang sedang masuk">{{ auth()->user()->name }}</span>
             <form action="{{ route('logout') }}" method="POST" class="admin-logout">
@@ -40,10 +38,13 @@
 @if (session('success'))
     <div class="admin-notice notice-success" role="status">{{ session('success') }}</div>
 @endif
+@if (session('error'))
+    <div class="admin-notice notice-error" role="alert">{{ session('error') }}</div>
+@endif
 <div class="admin-table-wrap">
     <table class="admin-table">
         <thead>
-            <tr><th class="p-3">Gambar</th><th class="p-3">Nama</th><th class="p-3">Kategori</th><th class="p-3">Harga</th><th class="p-3">Aksi</th></tr>
+            <tr><th class="p-3">Gambar</th><th class="p-3">Nama</th><th class="p-3">Kategori</th><th class="p-3">Harga/kg</th><th class="p-3">Estimasi</th><th class="p-3">Aksi</th></tr>
         </thead>
         <tbody>
             @forelse ($laundry_items as $laundryItem)
@@ -54,6 +55,7 @@
                     <td class="service-name">{{ $laundryItem->name }}</td>
                     <td>{{ $laundryItem->category }}</td>
                     <td class="admin-price">Rp {{ number_format($laundryItem->price, 0, ',', '.') }}</td>
+                    <td>{{ $laundryItem->estimated_duration }}</td>
                     <td class="service-actions">
                         <a href="{{ route('laundry_items.edit', $laundryItem) }}" class="edit-link">Edit</a>
                         <form action="{{ route('laundry_items.destroy', $laundryItem) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus layanan ini?')">
@@ -64,7 +66,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5" class="empty-row">Belum ada layanan.</td></tr>
+                <tr><td colspan="6" class="empty-row">Belum ada layanan.</td></tr>
             @endforelse
         </tbody>
     </table>

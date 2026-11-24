@@ -48,21 +48,27 @@ Seeder membuat akun admin berikut:
 - Email: `admin@gmail.com`
 - Password: `password123`
 
+Seeder juga membuat akun kasir:
+
+- Email: `kasir@gmail.com`
+- Password: `password123`
+
 Ubah password awal sebelum aplikasi digunakan secara publik.
 
 ## Fitur
 
-- Katalog layanan dengan filter kategori, ilustrasi lokal, dan formulir pemesanan.
-- CRUD layanan, termasuk unggah dan penghapusan gambar sendiri.
+- Katalog layanan dengan filter kategori, harga per kg, estimasi selesai, ilustrasi lokal, dan formulir pemesanan.
+- CRUD layanan, termasuk harga per kg, estimasi selesai, unggah dan penghapusan gambar.
 - Pemesanan mencatat nomor telepon/WhatsApp pelanggan.
 - Struk ringkas muncul sebagai kotak di tengah halaman setelah pesanan dikirim.
 - Nomor pesanan berurutan per tanggal dan dimulai kembali dari 1 setiap hari; penghapusan pesanan merapikan nomor hari tersebut.
 - Pemesanan dibuka pukul 05.00–00.00 WIB dan ditutup sementara pukul 00.00–05.00 WIB.
-- Login, pendaftaran akun pelanggan, dan logout; akun pelanggan hanya dapat memesan.
-- Dashboard, CRUD layanan, perubahan status, dan penghapusan pesanan hanya dapat diakses akun admin.
-- Dashboard admin untuk melihat pesanan, menghubungi pelanggan melalui WhatsApp, memperbarui status, dan menghapus pesanan.
-- Relasi pesanan ke detail pesanan dan layanan; harga detail menyimpan subtotal saat pesanan dibuat.
-- Seeder berisi lima contoh layanan.
+- Login admin, kasir, dan pelanggan; kasir dapat mengakses dashboard, mencatat transaksi, memperbarui status, dan melihat rekap tanpa mengelola layanan.
+- Dashboard admin dengan menu Data Layanan dan Rekap Transaksi.
+- Admin dapat mengelola layanan dan transaksi; status transaksi dapat diubah dari Proses menjadi Selesai.
+- Rekap transaksi menampilkan data pelanggan, layanan terkait, status, dan pendapatan transaksi selesai.
+- Relasi transaksi ke pelanggan dan detail layanan; harga detail menyimpan subtotal saat transaksi dibuat.
+- Seeder berisi layanan Reguler (Rp 7.000/kg, 3-4 hari), Ekspres (Rp 12.000/kg, 1-2 hari), dan Superkilat (Rp 25.000/kg, 5 jam selesai).
 
 ## Ringkasan query
 

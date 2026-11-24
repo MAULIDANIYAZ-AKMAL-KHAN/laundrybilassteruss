@@ -9,52 +9,62 @@ class LaundryItemSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('laundry_items')->insert([
+        $plans = [
             [
-                'name' => 'Cuci Baju Reguler',
+                'name' => 'Reguler',
+                'category' => 'Cuci',
+                'price' => 7000,
+                'estimated_duration' => '3-4 hari',
+                'description' => 'Layanan cuci reguler dengan harga Rp 7.000 per kg.',
+                'legacy_names' => ['Cuci Baju Reguler'],
+            ],
+            [
+                'name' => 'Ekspres',
+                'category' => 'Cuci',
+                'price' => 12000,
+                'estimated_duration' => '1-2 hari',
+                'description' => 'Layanan cuci ekspres dengan harga Rp 12.000 per kg.',
+                'legacy_names' => ['Cuci Baju Ekspres'],
+            ],
+            [
+                'name' => 'Superkilat',
                 'category' => 'Cuci',
                 'price' => 25000,
-                'description' => 'Layanan cuci baju reguler.',
-                'image' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'estimated_duration' => '5 jam selesai',
+                'description' => 'Layanan cuci superkilat dengan harga Rp 25.000 per kg.',
+                'legacy_names' => ['Setrika Baju Reguler'],
             ],
-            [
-                'name' => 'Cuci Baju Ekspres',
-                'category' => 'Cuci',
-                'price' => 28000,
-                'description' => 'Layanan cuci baju ekspres.',
-                'image' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Setrika Baju Reguler',
-                'category' => 'Setrika',
-                'price' => 5000,
-                'description' => 'Layanan setrika baju reguler.',
-                'image' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Setrika Baju Ekspres',
-                'category' => 'Setrika',
-                'price' => 15000,
-                'description' => 'Layanan setrika baju ekspres.',
-                'image' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Paket Cuci dan Setrika',
-                'category' => 'Paket',
-                'price' => 12000,
-                'description' => 'Paket layanan cuci dan setrika baju.',
-                'image' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        ];
+
+        foreach ($plans as $plan) {
+            $legacyNames = $plan['legacy_names'];
+            unset($plan['legacy_names']);
+
+            $existingItem = DB::table('laundry_items')
+                ->whereIn('name', array_merge([$plan['name']], $legacyNames))
+                ->first();
+
+            if ($existingItem) {
+                DB::table('laundry_items')->where('id', $existingItem->id)->update([
+                    ...$plan,
+                    'updated_at' => now(),
+                ]);
+            } else {
+                DB::table('laundry_items')->insert([
+                    ...$plan,
+                    'image' => null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+
+        foreach (['Setrika Baju Ekspres', 'Paket Cuci dan Setrika'] as $legacyName) {
+            $legacyItem = DB::table('laundry_items')->where('name', $legacyName)->first();
+
+            if ($legacyItem && ! DB::table('order_details')->where('laundry_item_id', $legacyItem->id)->exists()) {
+                DB::table('laundry_items')->where('id', $legacyItem->id)->delete();
+            }
+        }
     }
 }

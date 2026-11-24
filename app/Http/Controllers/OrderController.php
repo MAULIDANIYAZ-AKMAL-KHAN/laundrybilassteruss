@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\LaundryItem;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -46,6 +47,11 @@ class OrderController extends Controller
         $businessDate = now()->toDateString();
 
         $order = DB::transaction(function () use ($validated, $orderedItems, $businessDate): Order {
+            $customer = Customer::updateOrCreate(
+                ['phone_number' => $validated['phone_number']],
+                ['name' => $validated['customer_name']]
+            );
+
             DB::table('daily_order_sequences')->insertOrIgnore([
                 'business_date' => $businessDate,
                 'last_number' => 0,
@@ -67,6 +73,7 @@ class OrderController extends Controller
                 ]);
 
             $order = Order::create([
+                'customer_id' => $customer->id,
                 'customer_name' => $validated['customer_name'],
                 'phone_number' => $validated['phone_number'],
                 // Older databases still require a value in this legacy column.
@@ -128,13 +135,39 @@ class OrderController extends Controller
 
     public function adminDashboard(): View
     {
-        $orders = Order::with('orderDetails.laundryItem')
+        $orders = Order::with(['customer', 'orderDetails.laundryItem'])
             ->orderBy('business_date')
             ->orderBy('order_number')
             ->orderBy('id')
             ->get();
 
         return view('dashboard', compact('orders'));
+    }
+
+    public function report(): View
+    {
+        $orders = Order::with(['customer', 'orderDetails.laundryItem'])
+            ->orderByDesc('created_at')
+            ->orderByDesc('id')
+            ->get();
+        $completedOrders = $orders->filter(
+            static fn (Order $order): bool => strtolower($order->status) === 'completed'
+        );
+        $processingOrders = $orders->filter(
+            static fn (Order $order): bool => strtolower($order->status) === 'pending'
+        );
+        $cancelledOrders = $orders->filter(
+            static fn (Order $order): bool => strtolower($order->status) === 'cancelled'
+        );
+        $summary = [
+            'transactions' => $orders->count(),
+            'processing' => $processingOrders->count(),
+            'completed' => $completedOrders->count(),
+            'cancelled' => $cancelledOrders->count(),
+            'revenue' => $completedOrders->sum('total_price'),
+        ];
+
+        return view('admin.reports.index', compact('orders', 'summary'));
     }
 
     public function updateStatus(Request $request, Order $order): RedirectResponse
